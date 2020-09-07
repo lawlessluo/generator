@@ -1568,6 +1568,9 @@ public interface Plugin {
     boolean providerInsertSelectiveMethodGenerated(Method method,
             TopLevelClass topLevelClass, IntrospectedTable introspectedTable);
 
+    boolean providerUpsertSelectiveMethodGenerated(Method method,
+                                                   TopLevelClass topLevelClass, IntrospectedTable introspectedTable);
+
     /**
      * This method is called when the selectByExampleWithBLOBs method has
      * been generated in the SQL provider.

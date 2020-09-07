@@ -1213,6 +1213,18 @@ public abstract class CompositePlugin implements Plugin {
     }
 
     @Override
+    public boolean providerUpsertSelectiveMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                          IntrospectedTable introspectedTable) {
+        for (Plugin plugin : plugins) {
+            if (!plugin.providerUpsertSelectiveMethodGenerated(method, topLevelClass, introspectedTable)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
     public boolean providerSelectByExampleWithBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass,
             IntrospectedTable introspectedTable) {
         for (Plugin plugin : plugins) {

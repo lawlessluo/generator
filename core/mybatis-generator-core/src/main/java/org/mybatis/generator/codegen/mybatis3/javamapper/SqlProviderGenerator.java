@@ -26,17 +26,7 @@ import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.codegen.AbstractJavaGenerator;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.sqlprovider.AbstractJavaProviderMethodGenerator;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.sqlprovider.ProviderApplyWhereMethodGenerator;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.sqlprovider.ProviderCountByExampleMethodGenerator;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.sqlprovider.ProviderDeleteByExampleMethodGenerator;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.sqlprovider.ProviderInsertSelectiveMethodGenerator;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.sqlprovider.ProviderSelectByExampleWithBLOBsMethodGenerator;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.sqlprovider.ProviderSelectByExampleWithoutBLOBsMethodGenerator;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.sqlprovider.ProviderUpdateByExampleSelectiveMethodGenerator;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.sqlprovider.ProviderUpdateByExampleWithBLOBsMethodGenerator;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.sqlprovider.ProviderUpdateByExampleWithoutBLOBsMethodGenerator;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.sqlprovider.ProviderUpdateByPrimaryKeySelectiveMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.sqlprovider.*;
 
 public class SqlProviderGenerator extends AbstractJavaGenerator {
 
@@ -63,6 +53,7 @@ public class SqlProviderGenerator extends AbstractJavaGenerator {
         addApplyWhereMethod |= addCountByExampleMethod(topLevelClass);
         addApplyWhereMethod |= addDeleteByExampleMethod(topLevelClass);
         addInsertSelectiveMethod(topLevelClass);
+        addUpsertSelectiveMethod(topLevelClass);
         addApplyWhereMethod |= addSelectByExampleWithBLOBsMethod(topLevelClass);
         addApplyWhereMethod |= addSelectByExampleWithoutBLOBsMethod(topLevelClass);
         addApplyWhereMethod |= addUpdateByExampleSelectiveMethod(topLevelClass);
@@ -112,6 +103,14 @@ public class SqlProviderGenerator extends AbstractJavaGenerator {
         if (introspectedTable.getRules().generateInsertSelective()) {
             AbstractJavaProviderMethodGenerator methodGenerator =
                     new ProviderInsertSelectiveMethodGenerator(useLegacyBuilder);
+            initializeAndExecuteGenerator(methodGenerator, topLevelClass);
+        }
+    }
+
+    protected void addUpsertSelectiveMethod(TopLevelClass topLevelClass) {
+        if (introspectedTable.getRules().generateInsertSelective()) {
+            AbstractJavaProviderMethodGenerator methodGenerator =
+                    new ProviderUpsertSelectiveMethodGenerator(useLegacyBuilder);
             initializeAndExecuteGenerator(methodGenerator, topLevelClass);
         }
     }

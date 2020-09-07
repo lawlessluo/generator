@@ -506,6 +506,12 @@ public abstract class PluginAdapter implements Plugin {
     }
 
     @Override
+    public boolean providerUpsertSelectiveMethodGenerated(Method method,
+                                                          TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
     public boolean providerSelectByExampleWithBLOBsMethodGenerated(
             Method method, TopLevelClass topLevelClass,
             IntrospectedTable introspectedTable) {
