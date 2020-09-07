@@ -1275,6 +1275,13 @@ public interface Plugin {
     boolean sqlMapInsertSelectiveElementGenerated(XmlElement element,
             IntrospectedTable introspectedTable);
 
+    boolean sqlMapUpsertElementGenerated(XmlElement element,
+                                         IntrospectedTable introspectedTable);
+
+
+    boolean sqlMapUpsertSelectiveElementGenerated(XmlElement element,
+                                                  IntrospectedTable introspectedTable);
+
     /**
      * This method is called when the resultMap with BLOBs element is generated
      * - this resultMap will extend the base resultMap.

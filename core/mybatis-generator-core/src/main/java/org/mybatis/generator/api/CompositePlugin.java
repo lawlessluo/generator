@@ -1003,6 +1003,28 @@ public abstract class CompositePlugin implements Plugin {
     }
 
     @Override
+    public boolean sqlMapUpsertElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        for (Plugin plugin : plugins) {
+            if (!plugin.sqlMapInsertElementGenerated(element, introspectedTable)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean sqlMapUpsertSelectiveElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        for (Plugin plugin : plugins) {
+            if (!plugin.sqlMapInsertSelectiveElementGenerated(element, introspectedTable)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
     public boolean sqlMapResultMapWithBLOBsElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
         for (Plugin plugin : plugins) {
             if (!plugin.sqlMapResultMapWithBLOBsElementGenerated(element, introspectedTable)) {

@@ -376,6 +376,12 @@ public abstract class PluginAdapter implements Plugin {
     }
 
     @Override
+    public boolean sqlMapUpsertElementGenerated(XmlElement element,
+                                                IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
     public boolean sqlMapResultMapWithBLOBsElementGenerated(XmlElement element,
             IntrospectedTable introspectedTable) {
         return true;
@@ -438,6 +444,12 @@ public abstract class PluginAdapter implements Plugin {
     @Override
     public boolean sqlMapInsertSelectiveElementGenerated(XmlElement element,
             IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean sqlMapUpsertSelectiveElementGenerated(XmlElement element,
+                                                         IntrospectedTable introspectedTable) {
         return true;
     }
 

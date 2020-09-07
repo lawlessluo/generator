@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2019 the original author or authors.
+ *    Copyright 2006-2020 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -72,6 +72,20 @@ public abstract class BaseRules implements Rules {
     @Override
     public boolean generateInsertSelective() {
         return generateInsert();
+    }
+
+    @Override
+    public boolean generateUpsert() {
+        if (isModelOnly) {
+            return false;
+        }
+
+        return tableConfiguration.isUpsertStatementEnabled();
+    }
+
+    @Override
+    public boolean generateUpsertSelective() {
+        return generateUpsert();
     }
 
     /**

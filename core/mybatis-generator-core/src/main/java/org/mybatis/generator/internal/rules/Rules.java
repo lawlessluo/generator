@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2019 the original author or authors.
+ *    Copyright 2006-2020 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -44,6 +44,24 @@ public interface Rules {
      * @return true if the element and method should be generated
      */
     boolean generateInsertSelective();
+
+    /**
+     * Implements the rule for generating the upsert SQL Map element and DAO
+     * method. If the insert statement is allowed, then generate the element and
+     * method.
+     *
+     * @return true if the element and method should be generated
+     */
+    boolean generateUpsert();
+
+    /**
+     * Implements the rule for generating the upsert selective SQL Map element
+     * and DAO method. If the insert statement is allowed, then generate the
+     * element and method.
+     *
+     * @return true if the element and method should be generated
+     */
+    boolean generateUpsertSelective();
 
     /**
      * Calculates the class that contains all fields. This class is used as the
