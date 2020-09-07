@@ -135,7 +135,7 @@ public class UpsertSelectiveElementGenerator extends
             valuesTrimElement.addElement(valuesNotNullElement);
         }
 
-        if (context.getPlugins().sqlMapInsertSelectiveElementGenerated(
+        if (context.getPlugins().sqlMapUpsertSelectiveElementGenerated(
                 answer, introspectedTable)) {
             parentElement.addElement(answer);
         }

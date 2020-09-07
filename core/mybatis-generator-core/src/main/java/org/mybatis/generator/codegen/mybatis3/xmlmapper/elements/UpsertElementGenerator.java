@@ -122,7 +122,7 @@ public class UpsertElementGenerator extends AbstractXmlElementGenerator {
             answer.addElement(new TextElement(clause));
         }
 
-        if (context.getPlugins().sqlMapInsertElementGenerated(answer,
+        if (context.getPlugins().sqlMapUpsertElementGenerated(answer,
                 introspectedTable)) {
             parentElement.addElement(answer);
         }
