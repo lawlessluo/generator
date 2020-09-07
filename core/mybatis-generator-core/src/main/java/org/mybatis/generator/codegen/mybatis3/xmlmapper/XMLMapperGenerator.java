@@ -74,6 +74,8 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         addDeleteByExampleElement(answer);
         addInsertElement(answer);
         addInsertSelectiveElement(answer);
+        addUpsertElement(answer);
+        addUpsertSelectiveElement(answer);
         addCountByExampleElement(answer);
         addUpdateByExampleSelectiveElement(answer);
         addUpdateByExampleWithBLOBsElement(answer);
@@ -175,6 +177,20 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
     }
 
     protected void addInsertSelectiveElement(XmlElement parentElement) {
+        if (introspectedTable.getRules().generateInsertSelective()) {
+            AbstractXmlElementGenerator elementGenerator = new InsertSelectiveElementGenerator();
+            initializeAndExecuteGenerator(elementGenerator, parentElement);
+        }
+    }
+
+    protected void addUpsertElement(XmlElement parentElement) {
+        if (introspectedTable.getRules().generateInsert()) {
+            AbstractXmlElementGenerator elementGenerator = new InsertElementGenerator(false);
+            initializeAndExecuteGenerator(elementGenerator, parentElement);
+        }
+    }
+
+    protected void addUpsertSelectiveElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateInsertSelective()) {
             AbstractXmlElementGenerator elementGenerator = new InsertSelectiveElementGenerator();
             initializeAndExecuteGenerator(elementGenerator, parentElement);
