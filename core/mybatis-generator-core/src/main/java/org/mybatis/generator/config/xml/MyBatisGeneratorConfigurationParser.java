@@ -260,6 +260,11 @@ public class MyBatisGeneratorConfigurationParser {
             tc.setInsertStatementEnabled(isTrue(enableInsert));
         }
 
+        String enableUpsert = attributes.getProperty("enableUpsert"); //$NON-NLS-1$
+        if (stringHasValue(enableUpsert)) {
+            tc.setUpsertStatementEnabled(isTrue(enableUpsert));
+        }
+
         String enableSelectByPrimaryKey = attributes
                 .getProperty("enableSelectByPrimaryKey"); //$NON-NLS-1$
         if (stringHasValue(enableSelectByPrimaryKey)) {

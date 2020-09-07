@@ -94,6 +94,7 @@ public class TableConfiguration extends PropertyHolder {
         ignoredColumns = new HashMap<>();
 
         insertStatementEnabled = true;
+        upsertStatementEnabled = true;
         selectByPrimaryKeyStatementEnabled = true;
         selectByExampleStatementEnabled = true;
         updateByPrimaryKeyStatementEnabled = true;
