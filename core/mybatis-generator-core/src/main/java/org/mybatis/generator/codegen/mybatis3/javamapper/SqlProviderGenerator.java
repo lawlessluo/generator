@@ -108,7 +108,7 @@ public class SqlProviderGenerator extends AbstractJavaGenerator {
     }
 
     protected void addUpsertSelectiveMethod(TopLevelClass topLevelClass) {
-        if (introspectedTable.getRules().generateInsertSelective()) {
+        if (introspectedTable.getRules().generateUpsertSelective()) {
             AbstractJavaProviderMethodGenerator methodGenerator =
                     new ProviderUpsertSelectiveMethodGenerator(useLegacyBuilder);
             initializeAndExecuteGenerator(methodGenerator, topLevelClass);

@@ -52,7 +52,7 @@ public class ProviderUpsertSelectiveMethodGenerator extends AbstractJavaProvider
         importedTypes.add(fqjt);
 
         Method method = new Method(
-                introspectedTable.getInsertSelectiveStatementId());
+                introspectedTable.getUpsertSelectiveStatementId());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(FullyQualifiedJavaType.getStringInstance());
         method.addParameter(new Parameter(fqjt, "record")); //$NON-NLS-1$
@@ -98,7 +98,7 @@ public class ProviderUpsertSelectiveMethodGenerator extends AbstractJavaProvider
             method.addBodyLine("return sql.toString();"); //$NON-NLS-1$
         }
         
-        if (context.getPlugins().providerInsertSelectiveMethodGenerated(method, topLevelClass,
+        if (context.getPlugins().providerUpsertSelectiveMethodGenerated(method, topLevelClass,
                 introspectedTable)) {
             topLevelClass.addStaticImports(staticImports);
             topLevelClass.addImportedTypes(importedTypes);

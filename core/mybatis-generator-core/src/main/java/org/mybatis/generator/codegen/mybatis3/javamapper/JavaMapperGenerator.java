@@ -135,14 +135,14 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
     }
 
     protected void addUpsertMethod(Interface interfaze) {
-        if (introspectedTable.getRules().generateInsert()) {
+        if (introspectedTable.getRules().generateUpsert()) {
             AbstractJavaMapperMethodGenerator methodGenerator = new UpsertMethodGenerator(false);
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
     }
 
     protected void addUpsertSelectiveMethod(Interface interfaze) {
-        if (introspectedTable.getRules().generateInsertSelective()) {
+        if (introspectedTable.getRules().generateUpsertSelective()) {
             AbstractJavaMapperMethodGenerator methodGenerator = new UpsertSelectiveMethodGenerator();
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
